@@ -17,6 +17,7 @@ int main(void) {
 		while (Engine_event_status()) {
 			go = Engine_event_exit();
 		}
+		
 		set_color(0, 0, 0);
 		fill();
 		set_color(255, 120, 0);

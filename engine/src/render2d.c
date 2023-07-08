@@ -30,17 +30,11 @@ void Engine_update(void) {
 }
 
 bool Engine_event_status(void) {
-    if (SDL_PollEvent(&EVENT) != 0) {
-        return true;
-    }
-    return false;
+    return SDL_PollEvent(&EVENT) != 0;
 }
 
 bool Engine_event_exit() {
-    if(EVENT.type == SDL_QUIT || KEYBOARD_STATE[SDL_SCANCODE_ESCAPE]) {
-        return false;
-    }
-    return true;
+    return (EVENT.type == SDL_QUIT || KEYBOARD_STATE[SDL_SCANCODE_ESCAPE]);
 }
 
 void Engine_exit(void) {
