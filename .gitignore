@@ -1,0 +1,5 @@
+build/
+SDL2.dll
+libengine.dll
+engine_tests.exe
+game.exe
