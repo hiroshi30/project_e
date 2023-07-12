@@ -1,0 +1,1 @@
+void perspective_projection(Camera *camera, Mesh *mesh);

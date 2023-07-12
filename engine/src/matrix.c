@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "matrix.h"
 
@@ -57,10 +57,10 @@ void Matrix_summation(Matrix *matrix1, Matrix *matrix2, Matrix *matrix3) {
 	}
 }
 
-void Matrix_summation_scalar(Matrix *matrix1, double scalar, Matrix *matrix3) {
+void Matrix_summation_scalar(Matrix *matrix1, double scalar, Matrix *matrix2) {
 	for (int i = 0; i < matrix1->height; ++i) {
 		for (int j = 0; j < matrix1->width; ++j) {
-			matrix3->a[i][j] = matrix1->a[i][j] + scalar;
+			matrix2->a[i][j] = matrix1->a[i][j] + scalar;
 		}
 	}
 }
@@ -73,10 +73,10 @@ void Matrix_subtracting(Matrix *matrix1, Matrix *matrix2, Matrix *matrix3) {
 	}
 }
 
-void Matrix_subtracting_scalar(Matrix *matrix1, double scalar, Matrix *matrix3) {
+void Matrix_subtracting_scalar(Matrix *matrix1, double scalar, Matrix *matrix2) {
 	for (int i = 0; i < matrix1->height; ++i) {
 		for (int j = 0; j < matrix1->width; ++j) {
-			matrix3->a[i][j] = matrix1->a[i][j] - scalar;
+			matrix2->a[i][j] = matrix1->a[i][j] - scalar;
 		}
 	}
 }
@@ -97,18 +97,18 @@ void Matrix_multiplication(Matrix *matrix1, Matrix *matrix2, Matrix *matrix3) {
 	}
 }
 
-void Matrix_multiplication_scalar(Matrix *matrix1, double scalar, Matrix *matrix3) {
+void Matrix_multiplication_scalar(Matrix *matrix1, double scalar, Matrix *matrix2) {
 	for (int i = 0; i < matrix1->height; ++i) {
 		for (int j = 0; j < matrix1->width; ++j) {
-			matrix3->a[i][j] = matrix1->a[i][j] * scalar;
+			matrix2->a[i][j] = matrix1->a[i][j] * scalar;
 		}
 	}
 }
 
-void Matrix_division_scalar(Matrix *matrix1, double scalar, Matrix *matrix3) {
+void Matrix_division_scalar(Matrix *matrix1, double scalar, Matrix *matrix2) {
 	for (int i = 0; i < matrix1->height; ++i) {
 		for (int j = 0; j < matrix1->width; ++j) {
-			matrix3->a[i][j] = matrix1->a[i][j] / scalar;
+			matrix2->a[i][j] = matrix1->a[i][j] / scalar;
 		}
 	}
 }

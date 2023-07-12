@@ -1,5 +1,9 @@
+#include <stdbool.h>
 #include <SDL2/SDL.h>
 
+#include "matrix.h"
+#include "vector3.h"
+#include "vector4.h"
 #include "render2d.h"
 
 
@@ -34,7 +38,7 @@ bool Engine_event_status(void) {
 }
 
 bool Engine_event_exit() {
-    return (EVENT.type == SDL_QUIT || KEYBOARD_STATE[SDL_SCANCODE_ESCAPE]);
+    return !(EVENT.type == SDL_QUIT || KEYBOARD_STATE[SDL_SCANCODE_ESCAPE]);
 }
 
 void Engine_exit(void) {
@@ -67,4 +71,21 @@ void draw_circle(double x, double y, double radius) {
 
 void draw_line(double x1, double y1, double x2, double y2) {
     SDL_RenderDrawLine(RENDERER, x1, WINDOW_HEIGHT - y1, x2, WINDOW_HEIGHT - y2);
+}
+
+void draw_polygon_mesh(Vector4 **triangle) {
+    for (int i = 0; i < 2; ++i) {
+        draw_line(
+            (triangle[i]->x + 1) / 2 * WINDOW_WIDTH,
+            (triangle[i]->y + 1) / 2 * WINDOW_HEIGHT,
+            (triangle[i + 1]->x + 1) / 2 * WINDOW_WIDTH,
+            (triangle[i + 1]->y + 1) / 2 * WINDOW_HEIGHT
+        );
+    }
+        draw_line(
+            (triangle[0]->x + 1) / 2 * WINDOW_WIDTH,
+            (triangle[0]->y + 1) / 2 * WINDOW_HEIGHT,
+            (triangle[2]->x + 1) / 2 * WINDOW_WIDTH,
+            (triangle[2]->y + 1) / 2 * WINDOW_HEIGHT
+        );
 }

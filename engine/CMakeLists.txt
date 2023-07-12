@@ -11,6 +11,10 @@ target_sources(engine PRIVATE
 	src/vector3.c
 	src/vector4.c
 	src/render2d.c
+	src/camera.c
+	src/mesh.c
+	src/vertices.c
+	src/render3d.c
 )
 
 target_include_directories(engine PRIVATE
