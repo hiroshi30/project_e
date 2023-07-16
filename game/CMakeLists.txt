@@ -1,20 +1,21 @@
-target_compile_options(game PRIVATE
+target_compile_options(main PRIVATE
 	${COMPILE_OPTIONS}
 )
 
-target_compile_features(game PRIVATE
+target_compile_features(main PRIVATE
 	${COMPILE_FEATURES}
 )
 
-target_sources(game PRIVATE
+target_sources(main PRIVATE
 	src/main.c
 )
 
-target_include_directories(game PRIVATE
+target_include_directories(main PRIVATE
 	../engine/include
+	../file_reader/include
 	include
 )
 
-target_link_libraries(game PRIVATE
+target_link_libraries(main PRIVATE
 	engine
 )

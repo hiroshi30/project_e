@@ -12,8 +12,9 @@ target_sources(engine PRIVATE
 	src/vector4.c
 	src/render2d.c
 	src/camera.c
+	src/set.c
 	src/mesh.c
-	src/vertices.c
+	src/obj_reader.c
 	src/render3d.c
 )
 

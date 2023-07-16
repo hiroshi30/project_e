@@ -16,8 +16,5 @@ echo COPING SDL2.dll COMPLETE
 copy build\libengine.dll libengine.dll
 echo COPING libengine.dll COMPLETE
 
-copy build\game.exe game.exe
-echo COPING game.exe COMPLETE
-
-copy build\engine_tests.exe engine_tests.exe
-echo COPING engine_tests.exe COMPLETE
+copy build\main.exe main.exe
+echo COPING main.exe COMPLETE

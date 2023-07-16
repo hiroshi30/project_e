@@ -2,48 +2,69 @@
 #include <stdlib.h>
 
 #include "vector3.h"
-#include "vertices.h"
+#include "set.h"
 #include "mesh.h"
 
 
-Mesh *Mesh_construct(Vertices *vertices, int length, int points[]) {
+Mesh *Mesh_construct(Set *vertices, Set *normals, int length, int a[], int b[]) {
 	Mesh *mesh = (Mesh *)malloc(sizeof(Mesh));
 	mesh->length = length;
-	mesh->a = (Vector3 ***)malloc(sizeof(Vector3 **) * length);
+	
+	mesh->verts = (Vector3 ***)malloc(sizeof(Vector3 **) * length);
 	for (int i = 0; i < length; ++i) {
-		mesh->a[i] = (Vector3 **)malloc(sizeof(Vector3 *) * 3);
+		mesh->verts[i] = (Vector3 **)malloc(sizeof(Vector3 *) * 3);
 		for (int j = 0; j < 3; ++j) {
-			mesh->a[i][j] = vertices->a[points[i * 3 + j]];
+			mesh->verts[i][j] = (Vector3 *)malloc(sizeof(Vector3));
+			mesh->verts[i][j]->x = vertices->a[a[i * 3 + j] - 1]->x;
+			mesh->verts[i][j]->y = vertices->a[a[i * 3 + j] - 1]->y;
+			mesh->verts[i][j]->z = vertices->a[a[i * 3 + j] - 1]->z;
 		}
 	}
+
+	mesh->norms = (Vector3 ***)malloc(sizeof(Vector3 **) * length);
+	for (int i = 0; i < length; ++i) {
+		mesh->norms[i] = (Vector3 **)malloc(sizeof(Vector3 *) * 3);
+		for (int j = 0; j < 3; ++j) {
+			mesh->norms[i][j] = (Vector3 *)malloc(sizeof(Vector3));
+			mesh->norms[i][j]->x = normals->a[b[i * 3 + j] - 1]->x;
+			mesh->norms[i][j]->y = normals->a[b[i * 3 + j] - 1]->y;
+			mesh->norms[i][j]->z = normals->a[b[i * 3 + j] - 1]->z;
+		}
+	}
+	
 	return mesh;
 }
 
 void Mesh_destruct(Mesh *mesh) {
 	for (int i = 0; i < mesh->length; ++i) {
-		free(mesh->a[i]);
+		for (int j = 0; j < 0; ++j) {
+			free(mesh->verts[i][j]);
+		}
+		free(mesh->verts[i]);
+		free(mesh->norms[i]);
 	}
-	free(mesh->a);
+	free(mesh->verts);
+	free(mesh->norms);
 	free(mesh);
 }
 
-void Mesh_print(Mesh *mesh) {
-	printf("Mesh {\n");
-	for (int i = 0; i < mesh->length; ++i) {
-		printf("    %d: {\n", i);
-		for (int j = 0; j < 3; ++j) {
-			printf("        {%lf, %lf, %lf", mesh->a[i][j]->x, mesh->a[i][j]->y, mesh->a[i][j]->z);
-			if (j < 3 - 1) {
-				printf("},\n");
-			} else {
-				printf("}\n");
-			}
-		}
-		if (i < mesh->length - 1) {
-			printf("    },\n");
-		} else {
-			printf("    }\n");
-		}
-	}
-	printf("}\n");
-}
+// void Mesh_print(Mesh *mesh) {
+// 	printf("Mesh {\n");
+// 	for (int i = 0; i < mesh->length; ++i) {
+// 		printf("    %d: {\n", i);
+// 		for (int j = 0; j < 3; ++j) {
+// 			printf("        {%lf, %lf, %lf", mesh->a[i][j]->x, mesh->a[i][j]->y, mesh->a[i][j]->z);
+// 			if (j < 3 - 1) {
+// 				printf("},\n");
+// 			} else {
+// 				printf("}\n");
+// 			}
+// 		}
+// 		if (i < mesh->length - 1) {
+// 			printf("    },\n");
+// 		} else {
+// 			printf("    }\n");
+// 		}
+// 	}
+// 	printf("}\n");
+// }

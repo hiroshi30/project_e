@@ -44,6 +44,12 @@ void Vector3_inverting(Vector3 *vect1, Vector3 *vect2) {
 	vect2->z = -vect1->z;
 }
 
+void Vector3_multiplication_scalar(Vector3 *vect1, double scalar, Vector3 *vect2) {
+	vect2->x = vect1->x * scalar;
+	vect2->y = vect1->y * scalar;
+	vect2->z = vect1->z * scalar;
+}
+
 
 double Vector3_square_length(Vector3 *vect) {
 	return vect->x * vect->x + vect->y * vect->y + vect->z * vect->z;

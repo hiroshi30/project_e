@@ -16,10 +16,10 @@ const Uint8 *KEYBOARD_STATE;
 int R = 0, G = 0, B = 0, A = 255;
 
 
-void Engine_init(int window_width, int window_height) {
+void Engine_init(int window_width, int window_height, char title[]) {
     SDL_Init(SDL_INIT_VIDEO);
 
-    WINDOW = SDL_CreateWindow("main", 0, 25, window_width, window_height, SDL_WINDOW_SHOWN);
+    WINDOW = SDL_CreateWindow(title, 50, 50, window_width, window_height, SDL_WINDOW_SHOWN);
     RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     WINDOW_WIDTH = window_width;
     WINDOW_HEIGHT = window_height;
@@ -52,7 +52,12 @@ void set_color(int r, int g, int b) {
     R = r;
     G = g;
     B = b;
-    SDL_SetRenderDrawColor(RENDERER, r, g, b, 255);
+    SDL_SetRenderDrawColor(RENDERER, R, G, B, A);
+}
+
+void set_transparency(int a) {
+    A = a;
+    SDL_SetRenderDrawColor(RENDERER, R, G, B, A);
 }
 
 void fill(void) {
@@ -75,17 +80,15 @@ void draw_line(double x1, double y1, double x2, double y2) {
 
 void draw_polygon_mesh(Vector4 **triangle) {
     for (int i = 0; i < 2; ++i) {
-        draw_line(
-            (triangle[i]->x + 1) / 2 * WINDOW_WIDTH,
-            (triangle[i]->y + 1) / 2 * WINDOW_HEIGHT,
-            (triangle[i + 1]->x + 1) / 2 * WINDOW_WIDTH,
-            (triangle[i + 1]->y + 1) / 2 * WINDOW_HEIGHT
-        );
+        set_color(255, 255, 255);
+        draw_line(triangle[i]->x, triangle[i]->y, triangle[i + 1]->x, triangle[i + 1]->y);
     }
-        draw_line(
-            (triangle[0]->x + 1) / 2 * WINDOW_WIDTH,
-            (triangle[0]->y + 1) / 2 * WINDOW_HEIGHT,
-            (triangle[2]->x + 1) / 2 * WINDOW_WIDTH,
-            (triangle[2]->y + 1) / 2 * WINDOW_HEIGHT
-        );
+    
+    set_color(255, 255, 255);
+    draw_line(triangle[0]->x, triangle[0]->y, triangle[2]->x, triangle[2]->y);
+
+    // for (int i = 0; i < 3; ++i) {
+    //     set_color(255, 20, 40);
+    //     draw_circle(triangle[i]->x, triangle[i]->y, 3);
+    // }
 }

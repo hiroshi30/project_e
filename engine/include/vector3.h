@@ -9,6 +9,7 @@ void Vector3_summation_scalar(Vector3 *vect1, double scalar, Vector3 *vect2);
 void Vector3_subtracting(Vector3 *vect1, Vector3 *vect2, Vector3 *vect3);
 void Vector3_subtracting_scalar(Vector3 *vect1, double scalar, Vector3 *vect2);
 void Vector3_inverting(Vector3 *vect1, Vector3 *vect2);
+void Vector3_multiplication_scalar(Vector3 *vect1, double scalar, Vector3 *vect2);
 
 double Vector3_square_length(Vector3 *vect);
 double Vector3_length(Vector3 *vect);

@@ -52,6 +52,14 @@ void Vector4_inverting(Vector4 *vect1, Vector4 *vect2) {
 }
 
 
+double Vector4_square_length(Vector4 *vect) {
+	return vect->x * vect->x + vect->y * vect->y + vect->z * vect->z;
+}
+
+double Vector4_length(Vector4 *vect) {
+	return sqrt(Vector4_square_length(vect));
+}
+
 void Vector4_normalize(Vector4 *vect1, Vector4 *vect2) {
 	if (vect1->w != 1 && vect1->w != 0) {
 		vect2->x = vect1->x / vect1->w;
@@ -59,6 +67,14 @@ void Vector4_normalize(Vector4 *vect1, Vector4 *vect2) {
 		vect2->z = vect1->z / vect1->w;
 		vect2->w = 1;
 	}
+}
+
+void Vector4_nn(Vector4 *vect1, Vector4 *vect2) {
+	double length = sqrt(vect1->x * vect1->x + vect1->y * vect1->y + vect1->z * vect1->z);
+	vect2->x = vect1->x / length;
+	vect2->y = vect1->y / length;
+	vect2->z = vect1->z / length;
+	vect2->w = 1;
 }
 
 void Matrix_multiplication_Vector4(Matrix *matrix, Vector4 *vect1, Vector4 *vect2) {
