@@ -8,8 +8,7 @@
 
 #define PI 3.14159
 
-extern int WINDOW_HEIGHT;
-extern int WINDOW_WIDTH;
+extern int WINDOW_HEIGHT, WINDOW_WIDTH;
 
 
 Camera *Camera_construct(double near, double far, double fov) {

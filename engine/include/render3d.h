@@ -1,1 +1,1 @@
-void perspective_projection(Camera *camera, Mesh *mesh, Vector3 *light, double delta_time);
+void perspective_projection(Camera *camera, Mesh *mesh, double delta_time);

@@ -12,7 +12,6 @@ target_sources(main PRIVATE
 
 target_include_directories(main PRIVATE
 	../engine/include
-	../file_reader/include
 	include
 )
 

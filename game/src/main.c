@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -34,8 +35,11 @@ int main(void) {
 
 		mingw_gettimeofday(&t2, NULL);
 		delta_time = (double)(t2.tv_usec - t1.tv_usec) / 1000000 + (double)(t2.tv_sec - t1.tv_sec);
-		perspective_projection(camera, mesh, light, delta_time);
+		printf("%lf", delta_time);
+		perspective_projection(camera, mesh, delta_time);
+		printf(" projection: ok");
 		Engine_update();
+		printf(" engine update: ok\n");
 	}
 
 	Mesh_destruct(mesh);

@@ -124,6 +124,7 @@ Mesh *obj_read(char name[]) {
 
 	Set_destruct(vertices);
 	Set_destruct(normals);
+	fclose(file);
 
 	return mesh;
 }

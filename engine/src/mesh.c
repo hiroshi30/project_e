@@ -39,6 +39,7 @@ void Mesh_destruct(Mesh *mesh) {
 	for (int i = 0; i < mesh->length; ++i) {
 		for (int j = 0; j < 0; ++j) {
 			free(mesh->verts[i][j]);
+			free(mesh->norms[i][j]);
 		}
 		free(mesh->verts[i]);
 		free(mesh->norms[i]);
@@ -47,24 +48,3 @@ void Mesh_destruct(Mesh *mesh) {
 	free(mesh->norms);
 	free(mesh);
 }
-
-// void Mesh_print(Mesh *mesh) {
-// 	printf("Mesh {\n");
-// 	for (int i = 0; i < mesh->length; ++i) {
-// 		printf("    %d: {\n", i);
-// 		for (int j = 0; j < 3; ++j) {
-// 			printf("        {%lf, %lf, %lf", mesh->a[i][j]->x, mesh->a[i][j]->y, mesh->a[i][j]->z);
-// 			if (j < 3 - 1) {
-// 				printf("},\n");
-// 			} else {
-// 				printf("}\n");
-// 			}
-// 		}
-// 		if (i < mesh->length - 1) {
-// 			printf("    },\n");
-// 		} else {
-// 			printf("    }\n");
-// 		}
-// 	}
-// 	printf("}\n");
-// }

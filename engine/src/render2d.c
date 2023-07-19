@@ -79,16 +79,14 @@ void draw_line(double x1, double y1, double x2, double y2) {
 }
 
 void draw_polygon_mesh(Vector4 **triangle) {
+    set_color(255, 255, 255);
     for (int i = 0; i < 2; ++i) {
-        set_color(255, 255, 255);
         draw_line(triangle[i]->x, triangle[i]->y, triangle[i + 1]->x, triangle[i + 1]->y);
     }
-    
-    set_color(255, 255, 255);
     draw_line(triangle[0]->x, triangle[0]->y, triangle[2]->x, triangle[2]->y);
 
+    // set_color(255, 20, 40);
     // for (int i = 0; i < 3; ++i) {
-    //     set_color(255, 20, 40);
     //     draw_circle(triangle[i]->x, triangle[i]->y, 3);
     // }
 }
