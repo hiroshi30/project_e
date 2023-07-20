@@ -7,10 +7,10 @@
 
 #include "render2d.h"
 
-#include "camera.h"
-
 #include "set.h"
 #include "mesh.h"
+
+#include "camera.h"
 
 #include "render3d.h"
 
@@ -23,7 +23,7 @@ void perspective_projection(Camera *camera, Mesh *mesh, double delta_time) {
 	Matrix *scale = Matrix_scale_construct(2, 2, 2);
 	Matrix *translate = Matrix_translate_construct(0, 0, 5);
 
-	Vector4 **triangle = (Vector4 **)malloc(sizeof(Vector4 *));
+	Vector4 **triangle = (Vector4 **)malloc(sizeof(Vector4 *) * 3);
 	for (int j = 0; j < 3; ++j) {
 		triangle[j] = (Vector4 *)malloc(sizeof(Vector4));
 	}
@@ -58,7 +58,7 @@ void perspective_projection(Camera *camera, Mesh *mesh, double delta_time) {
 
 	Matrix_destruct(rot_x);
 	Matrix_destruct(rot_y);
-	Matrix_destruct(scale); 
+	Matrix_destruct(scale);
 	Matrix_destruct(translate);
 
 	for (int j = 0; j < 3; ++j) {

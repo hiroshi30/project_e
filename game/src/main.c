@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
-#include "engine.h"
+#include "matrix.h"
+#include "vector3.h"
+#include "vector4.h"
+
+#include "render2d.h"
+
+#include "set.h"
+#include "mesh.h"
+#include "camera.h"
+
+#include "obj_reader.h"
+
+#include "render3d.h"
 
 #define window_width 16 * 75
 #define window_height 9 * 75
@@ -17,7 +30,7 @@ int main(void) {
 		0.1, 1000, 90
 	);
 
-	Mesh *mesh = obj_read("C:/Users/takayama/Desktop/project_e/cube.obj");
+	Mesh *mesh = obj_read("C:/Users/takayama/Desktop/project_e/models/obj/monkey.obj");
 
 	struct timeval t1, t2;
 	mingw_gettimeofday(&t1, NULL);
@@ -35,11 +48,9 @@ int main(void) {
 
 		mingw_gettimeofday(&t2, NULL);
 		delta_time = (double)(t2.tv_usec - t1.tv_usec) / 1000000 + (double)(t2.tv_sec - t1.tv_sec);
-		printf("%lf", delta_time);
+		
 		perspective_projection(camera, mesh, delta_time);
-		printf(" projection: ok");
 		Engine_update();
-		printf(" engine update: ok\n");
 	}
 
 	Mesh_destruct(mesh);
