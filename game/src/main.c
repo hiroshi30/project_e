@@ -1,21 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <stdbool.h>
-
-#include "matrix.h"
-#include "vector3.h"
-#include "vector4.h"
-
-#include "render2d.h"
-
-#include "set.h"
-#include "mesh.h"
-#include "camera.h"
-
-#include "obj_reader.h"
-
-#include "render3d.h"
+#include "engine.h"
 
 #define window_width 16 * 75
 #define window_height 9 * 75
@@ -29,6 +12,8 @@ int main(void) {
 		// near, far, fov
 		0.1, 1000, 90
 	);
+
+	Z_BUFFER_construct();
 
 	Mesh *mesh = obj_read("C:/Users/takayama/Desktop/project_e/models/obj/monkey.obj");
 
@@ -54,6 +39,7 @@ int main(void) {
 	}
 
 	Mesh_destruct(mesh);
+	Z_BUFFER_destruct();
 	Camera_destruct(camera);
 	Engine_exit();
 

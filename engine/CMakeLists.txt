@@ -7,20 +7,21 @@ target_compile_features(engine PRIVATE
 )
 
 target_sources(engine PRIVATE
-	src/matrix.c
-	src/vector3.c
-	src/vector4.c
-	src/render2d.c
-	src/set.c
-	src/mesh.c
-	src/obj_reader.c
-	src/camera.c
-	src/render3d.c
+	rendering/src/matrix.c
+	rendering/src/vector3.c
+	rendering/src/vector4.c
+	rendering/src/render2d.c
+	rendering/src/set.c
+	rendering/src/mesh.c
+	models/src/obj_reader.c
+	rendering/src/camera.c
+	rendering/src/render3d.c
 )
 
 target_include_directories(engine PRIVATE
 	../${SDL_PATH}/include
-	include
+	rendering/include
+	models/include
 )
 
 target_link_directories(engine PRIVATE

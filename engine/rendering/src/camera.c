@@ -13,6 +13,10 @@ extern int WINDOW_HEIGHT, WINDOW_WIDTH;
 
 Camera *Camera_construct(double near, double far, double fov) {
 	Camera *camera = (Camera *)malloc(sizeof(Camera));
+
+	camera->near = near;
+	camera->far = far;
+	camera->fov = fov;
 	
 	double a = (double)WINDOW_HEIGHT / (double)WINDOW_WIDTH;
 	double f = 1 / tan(PI / 180 * (fov / 2));
