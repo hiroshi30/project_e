@@ -1,10 +1,7 @@
-target_compile_options(engine PRIVATE
-	${COMPILE_OPTIONS}
-)
+add_library(engine SHARED)
 
-target_compile_features(engine PRIVATE
-	${COMPILE_FEATURES}
-)
+target_compile_options(engine PRIVATE ${COMPILE_OPTIONS})
+target_compile_features(engine PRIVATE ${COMPILE_FEATURES})
 
 target_sources(engine PRIVATE
 	rendering/src/matrix.c
@@ -19,17 +16,22 @@ target_sources(engine PRIVATE
 )
 
 target_include_directories(engine PRIVATE
-	../${SDL_PATH}/include
+	${GLFW_include_path}
+	${GLEW_include_path}
 	rendering/include
 	models/include
 )
 
-target_link_directories(engine PRIVATE
-	../${SDL_PATH}/lib
+target_link_libraries(engine PRIVATE
+	opengl32
+	${GLFW_lib_path}
+	${GLEW_lib_path}
 )
 
-target_link_libraries(engine PRIVATE
-	SDL2main
-	SDL2
-	mingw32
+add_custom_command(
+    TARGET engine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    ${CMAKE_BINARY_DIR}/engine/libengine.dll
+    ${CMAKE_SOURCE_DIR}/libengine.dll
 )
+message("   libengine.dll will be copied at the end of building")

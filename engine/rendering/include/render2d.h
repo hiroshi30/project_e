@@ -7,6 +7,7 @@ void Engine_exit(void);
 void set_color(int r, int g, int b);
 void set_transparency(int a);
 void fill(void);
+void draw_pixel(double x, double y);
 void draw_circle(double x, double y, double radius);
 void draw_line(double x1, double y1, double x2, double y2);
 void draw_polygon_mesh(Vector4 **triangle);
